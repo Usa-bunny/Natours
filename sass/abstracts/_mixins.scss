@@ -1,0 +1,59 @@
+@mixin clearfix {
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+@mixin background_primary($transparansi) {
+    background-image: linear-gradient(
+    to right bottom,
+    rgba($color-primary-light, $transparansi),
+    rgba($color-primary-dark, $transparansi));
+}
+
+@mixin background_secondary($transparansi) {
+    background-image: linear-gradient(
+    to right bottom,
+    rgba($color-secondary-light, $transparansi),
+    rgba($color-secondary-dark, $transparansi));
+}
+
+@mixin background_tertiary($transparansi) {
+    background-image: linear-gradient(
+    to right bottom,
+    rgba($color-tertiary-light, $transparansi),
+    rgba($color-tertiary-dark, $transparansi));
+}
+
+@mixin absolute_center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+// Media query manager
+/*
+0 - 600px :          Phone (phone)
+600 - 900px :        Tablet portrait (tab-port)
+900 - 1200px :       Tablet landscape (tab-land)
+[1200 - 1800px] is normal style apply
+1800px++ :           Big desktop (big-desk)
+*/
+
+@mixin respond($breakpoint) {
+    @if $breakpoint == phone {
+        @media only screen and (max-width: 37.5em) { @content } //600px
+    } 
+    @if $breakpoint == tab-port {
+        @media only screen and (max-width: 56.25em) { @content } //900px
+    } 
+    @if $breakpoint == tab-land {
+        @media only screen and (max-width: 75em) { @content } //1200px
+    } 
+    @if $breakpoint == big-desk {
+        @media only screen and (min-width: 112.5em) { @content } //1800px
+    } 
+}
